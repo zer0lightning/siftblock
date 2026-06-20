@@ -1,0 +1,86 @@
+name: Generate SiftBlock Daily Diff
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Every day at midnight UTC
+  workflow_dispatch:      # Allow manual trigger
+
+permissions:
+  contents: write
+
+concurrency:
+  group: siftblock-write
+  cancel-in-progress: false
+
+jobs:
+  daily-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compute diff and save daily file
+        run: |
+          # This job intentionally does NOT regenerate blocklist.txt itself.
+          # The hourly workflow already produces a fresh one (and shares this
+          # job's concurrency group, so they can never race), so re-fetching
+          # all sources here would just duplicate that work.
+          if [ ! -f blocklist.txt ]; then
+            echo "blocklist.txt not found — nothing to diff yet, skipping."
+            exit 0
+          fi
+
+          DATE=$(date -u '+%Y-%m-%d')
+          DAILY_DIR="daily"
+          DAILY_FILE="${DAILY_DIR}/${DATE}.txt"
+          SNAPSHOT="blocklist-snapshot.txt"
+
+          mkdir -p "$DAILY_DIR"
+
+          # Extract domain lines (skip header comments and blanks)
+          grep -v '^#' blocklist.txt | grep -v '^$' | sort > /tmp/current.txt
+
+          if [ -f "$SNAPSHOT" ]; then
+            grep -v '^#' "$SNAPSHOT" | grep -v '^$' | sort > /tmp/previous.txt
+          else
+            # First ever run — treat everything as new
+            touch /tmp/previous.txt
+          fi
+
+          # New domains = in current but not in previous
+          NEW_COUNT=$(comm -23 /tmp/current.txt /tmp/previous.txt | wc -l | tr -d ' ')
+
+          # Build header for the daily diff file (real script, not an inline
+          # heredoc — avoids YAML/indentation breaking the Python source)
+          python3 src/build_daily_header.py "$DATE" "$NEW_COUNT" > /tmp/header.txt
+
+          # Combine header + new domain lines into the daily file
+          cat /tmp/header.txt > "$DAILY_FILE"
+          comm -23 /tmp/current.txt /tmp/previous.txt >> "$DAILY_FILE"
+
+          echo "New domains today: ${NEW_COUNT}"
+          echo "Saved to: ${DAILY_FILE}"
+
+          # Update snapshot to today's full list for tomorrow's diff
+          cp blocklist.txt "$SNAPSHOT"
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add daily/ blocklist-snapshot.txt
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            DATE=$(date -u '+%Y-%m-%d')
+            NEW_COUNT=$(grep -v '^#' "daily/${DATE}.txt" | grep -v '^$' | wc -l | tr -d ' ')
+            git commit -m "chore: daily diff ${DATE} — ${NEW_COUNT} new domains"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
