@@ -1,0 +1,15 @@
+# Title: SiftBlock Keywords
+# Description: Match terms used by generate_blocklist.py (case-insensitive substring match)
+# Syntax: One keyword per line. Lines starting with # are comments.
+#
+# THIS IS AN EXAMPLE — replace these with your own brand, event, or topic terms.
+# A common pattern is brand monitoring: watch for domains impersonating your
+# product, company name, or an upcoming launch.
+#
+# The example below watches for World Cup 2026-themed phishing as a working
+# demonstration. Delete it and add your own terms whenever you're ready.
+
+fifa
+fwc26
+wc2026
+worldcup
