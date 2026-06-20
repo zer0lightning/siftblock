@@ -1,0 +1,2 @@
+Title: Siftblock Threat Intelligence DNS Blocklist
+Description: Blocks phishing, scam, and malware domains.

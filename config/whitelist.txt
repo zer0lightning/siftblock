@@ -1,0 +1,11 @@
+# Title: SiftBlock Whitelist
+# Description: Known-legitimate domains, always excluded even if they match a keyword.
+# Syntax: One domain per line. Subdomains of a listed domain are also excluded.
+# Lines starting with # are comments. This file is optional — delete it (or
+# leave it empty) if you don't need any exclusions.
+#
+# Paired with the example keywords.txt that would otherwise false-positive against the
+# example "worldcup" keyword.
+
+# --- Main FIFA Site ---
+fifa.com
