@@ -7,6 +7,19 @@ SiftBlock is a configurable DNS blocklist aggregator and generator. Clone it, ed
 It isn't tied to any one brand or event. The most common use is **brand monitoring**: watch for domains impersonating your company, product, or an upcoming launch, and turn that into a blocklist you (or your org) can actually subscribe to.
 
 ---
+## Use Cases
+- **Brand monitoring** — phishing impersonating your company or product
+- **Event scams** — major sporting events, conferences, expos
+- **Product launches** — fake pre-order or early-access domains
+- **Executive impersonation** — domains mimicking a CEO/founder's name
+- **Crypto/token launches** — fake presale, airdrop, wallet-connect scams
+- **Seasonal shopping** — Black Friday, holiday sales, tax season
+- **Vendor impersonation** — invoice fraud using a partner's name
+
+**Why not just use a general blocklist?**
+- **Appliance limits** — enterprise DNS/firewall layers cap entry counts or degrade past a threshold; multi-million-entry lists hit that ceiling fast
+- **Trend visibility** — spot trends when new suspicious domains targeting your brand appear.
+
 
 ## Quick start
 
@@ -149,6 +162,14 @@ The hourly and daily workflows share a single GitHub Actions concurrency group (
 ### Daily diff
 
 Every day at midnight UTC, a second workflow compares the current blocklist against the previous day's snapshot and writes only the **newly observed domains** to `daily/YYYY-MM-DD.txt` — a running log of when domains first appeared.
+
+## FAQ ##
+
+- **Detects newly registered domains not yet in any feed?**
+No — only matches domains upstream feeds have already flagged.
+
+- **Scans CRT.SH / certificate transparency logs / other sources directly?**
+Not yet — planned. Currently feed-aggregation only.
 
 ---
 
