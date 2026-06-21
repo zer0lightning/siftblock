@@ -2,7 +2,7 @@
 
 *Sift any keyword. Block what matches.*
 
-SiftBlock is a configurable DNS blocklist generator. Clone it, edit `config/keywords.txt` with terms relevant to you, and it aggregates matching domains from public threat-intelligence feeds into your own `blocklist.txt` — automatically, on a schedule, via GitHub Actions.
+SiftBlock is a configurable DNS blocklist aggregator and generator. Clone it, edit `config/keywords.txt` with terms relevant to you, and it aggregates matching domains from public threat-intelligence feeds into your own `blocklist.txt` — automatically, on a schedule, via GitHub Actions.
 
 It isn't tied to any one brand or event. The most common use is **brand monitoring**: watch for domains impersonating your company, product, or an upcoming launch, and turn that into a blocklist you (or your org) can actually subscribe to.
 
