@@ -87,8 +87,8 @@ config/whitelist.txt:
     launch.acme.com
 
 config/meta.txt:
-    Title: Acme 2027 Launch Threat Intelligence DNS Blocklist
-    Description: Blocks phishing and scam domains themed around the Acme 2027 launch.
+    Title: Acme Threat Intelligence DNS Blocklist
+    Description: Blocks phishing and scam domains themed around the Acme related domains
 ```
 
 The output is always named `blocklist.txt` at the repo root, regardless of what your keywords are — so your subscribe URL never changes even if you update your keyword list later.
@@ -111,14 +111,14 @@ Source threat-intel feeds are listed in [`config/sources.txt`](config/sources.tx
 
 ---
 
-## Format
+## Example Output Format
 
 Plain domain list, one entry per line, with a descriptive header:
 
 ```
 # Title: World Cup 2026 Threat Intelligence DNS Blocklist
 # Description: Blocks phishing, scam, and malware domains themed around the 2026 World Cup.
-# Keywords: rfwc26, wc2026, worldcup
+# Keywords: fifa, fwc26, wc2026, worldcup
 # Last modified: 20 Jun 2026 10:00 UTC
 # Number of entries: 1521
 #
