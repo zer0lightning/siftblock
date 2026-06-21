@@ -9,6 +9,7 @@
 # The example below watches for World Cup 2026-themed phishing as a working
 # demonstration. Delete it and add your own terms whenever you're ready.
 
-rfwc26
+fifa
+fwc26
 wc2026
 worldcup
