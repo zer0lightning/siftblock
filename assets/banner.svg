@@ -1,0 +1,80 @@
+<svg viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101A2E"/>
+      <stop offset="100%" stop-color="#080D18"/>
+    </linearGradient>
+    <linearGradient id="dotB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <radialGradient id="glowField" cx="22%" cy="48%" r="60%">
+      <stop offset="0%" stop-color="#1B2C4F" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#1B2C4F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowB" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1280" height="640" fill="url(#bgB)"/>
+  <rect width="1280" height="640" fill="url(#glowField)"/>
+
+  <!-- faint dot grid texture -->
+  <g fill="#1B2945">
+    <circle cx="60" cy="60" r="2.5"/><circle cx="120" cy="60" r="2.5"/><circle cx="180" cy="60" r="2.5"/>
+    <circle cx="60" cy="120" r="2.5"/><circle cx="120" cy="120" r="2.5"/><circle cx="180" cy="120" r="2.5"/>
+    <circle cx="60" cy="580" r="2.5"/><circle cx="120" cy="580" r="2.5"/><circle cx="180" cy="580" r="2.5"/>
+    <circle cx="1100" cy="60" r="2.5"/><circle cx="1160" cy="60" r="2.5"/><circle cx="1220" cy="60" r="2.5"/>
+    <circle cx="1100" cy="580" r="2.5"/><circle cx="1160" cy="580" r="2.5"/><circle cx="1220" cy="580" r="2.5"/>
+  </g>
+
+  <!-- left side: funnel mark, scaled up -->
+  <g transform="translate(120, 150)">
+    <!-- scattered noise dots -->
+    <g fill="#4B5C7A">
+      <circle cx="10" cy="6" r="8"/>
+      <circle cx="60" cy="-18" r="6"/>
+      <circle cx="115" cy="10" r="9"/>
+      <circle cx="170" cy="-20" r="6"/>
+      <circle cx="225" cy="8" r="8"/>
+      <circle cx="35" cy="38" r="5"/>
+      <circle cx="140" cy="38" r="5"/>
+      <circle cx="245" cy="40" r="6"/>
+      <circle cx="-15" cy="40" r="5"/>
+      <circle cx="195" cy="38" r="5"/>
+    </g>
+
+    <!-- funnel body -->
+    <path d="M -20 66 L 256 66 L 156 188 L 156 240 L 96 240 L 96 188 Z"
+          fill="none" stroke="#7C8BA8" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- mesh lines -->
+    <g stroke="#7C8BA8" stroke-width="5" stroke-linecap="round" opacity="0.85">
+      <line x1="6" y1="96" x2="230" y2="96"/>
+      <line x1="32" y1="126" x2="204" y2="126"/>
+      <line x1="58" y1="156" x2="178" y2="156"/>
+    </g>
+
+    <!-- precise match -->
+    <circle cx="126" cy="262" r="22" fill="url(#dotB)" filter="url(#glowB)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="430" y="305" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="92" fill="#F8FAFC">SiftBlock</text>
+
+  <!-- tagline -->
+  <text x="432" y="358" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="30" fill="#94A3B8">Sift any keyword. Block what matches.</text>
+
+  <!-- thin accent rule -->
+  <rect x="432" y="380" width="64" height="4" rx="2" fill="url(#dotB)"/>
+
+  <!-- supporting line -->
+  <text x="432" y="430" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="22" fill="#5B6B8C">Build a targeted DNS blocklist from your own keywords —</text>
+  <text x="432" y="460" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="22" fill="#5B6B8C">brand monitoring, event scams, product launches, and more.</text>
+</svg>

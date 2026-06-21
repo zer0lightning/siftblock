@@ -1,0 +1,51 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101A2E"/>
+      <stop offset="100%" stop-color="#0A1120"/>
+    </linearGradient>
+    <linearGradient id="dot" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- base mark -->
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="url(#bg)"/>
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="none" stroke="#1E2B45" stroke-width="3"/>
+
+  <!-- scattered noise dots (the general / unfiltered universe) -->
+  <g fill="#4B5C7A">
+    <circle cx="120" cy="118" r="9"/>
+    <circle cx="178" cy="92" r="7"/>
+    <circle cx="238" cy="124" r="10"/>
+    <circle cx="300" cy="90" r="7"/>
+    <circle cx="362" cy="120" r="9"/>
+    <circle cx="150" cy="160" r="6"/>
+    <circle cx="270" cy="160" r="6"/>
+    <circle cx="392" cy="162" r="7"/>
+    <circle cx="90" cy="160" r="6"/>
+    <circle cx="330" cy="160" r="6"/>
+  </g>
+
+  <!-- funnel / sieve body -->
+  <path d="M 96 188 L 416 188 L 296 332 L 296 392 L 216 392 L 216 332 Z"
+        fill="none" stroke="#7C8BA8" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- mesh lines across the funnel (the sift) -->
+  <g stroke="#7C8BA8" stroke-width="6" stroke-linecap="round" opacity="0.85">
+    <line x1="128" y1="222" x2="384" y2="222"/>
+    <line x1="158" y1="256" x2="354" y2="256"/>
+    <line x1="188" y1="290" x2="324" y2="290"/>
+  </g>
+
+  <!-- single precise match emerging from the spout -->
+  <circle cx="256" cy="420" r="26" fill="url(#dot)" filter="url(#glow)"/>
+</svg>
