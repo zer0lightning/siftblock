@@ -1,6 +1,8 @@
 # SiftBlock
 
+![SiftBlock](assets/banner.png)
 *Sift any keyword. Block what matches.*
+
 
 SiftBlock is a configurable DNS blocklist aggregator and generator. Clone it, edit `config/keywords.txt` with terms relevant to you, and it aggregates matching domains from public threat-intelligence feeds into your own `blocklist.txt` — automatically, on a schedule, via GitHub Actions.
 
